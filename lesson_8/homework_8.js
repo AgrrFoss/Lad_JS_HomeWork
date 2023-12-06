@@ -124,9 +124,17 @@ class User {
     getCourse() {
         let date = new Date()
         let course = date.getFullYear() - this.year;
-        return course > 5 ? `${this.getFullName.call(this)} закончил учиться ${course - 5} лет назад` : `Учится на ${course + 1} курсе`;
+        let per
+        if (course === 6) {
+            per = 'год'
+        } else if (course > 6 && course < 9) {
+            per = 'года'
+        } else {
+            per = 'лет'
+        }
+        return course >= 5 ? `${this.getFullName.call(this)} закончил учиться ${course - 5 + ' ' +per} назад` : `Учится на ${course + 1} курсе`;
     }
  }
 
- const student = new Student ('Ivan','Ivanov', 2016)
+ const student = new Student ('Ivan','Ivanov', 2018)
  console.log(student.getCourse())
